@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@300&family=Source+Code+Pro&family=Tauri&family=Varela+Round&display=swap');
+
+*{
+    box-sizing: border-box;
+    font-family: 'Source Code Pro', monospace;
+}
+
+html, body {
+    margin: 0;
+    height: 100%;
+}
+
+body{
+    text-align: center;
+    background: url("images/mountains.svg") no-repeat center, radial-gradient(ellipse at bottom, #020b0e, #132949) no-repeat;
+    background-size: cover;
+    overflow: hidden;
+}
+
+h1, p{
+    color: white;
+}
+
+p{
+    margin-top: 25px;
+    font-size: 1rem;
+}
+
+h1{
+    display: none;
+    font-size: 5.5rem;
+}
+.animText{
+    color: rgba(56, 255, 224, 0.52);
+}
+.info{
+    transition: opacity 1s;
+}
+.story-title{
+    opacity: 0;
+    transition: opacity 1s, font-size 3s;
+}
+
+.start-story{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.start-story button{
+    background: url("images/moon.svg") no-repeat;
+    background-size: cover;
+    border: none;
+    padding: 15px 30px 45px 30px;
+    border-radius: 5px;
+    margin-top: 70px;
+    transition: padding 0.3s;
+}
+
+.start-story button:hover{
+    cursor: pointer;
+    padding: 17px 32px 47px 32px;
+}
+
+.game-section{
+    display: none;
+}
