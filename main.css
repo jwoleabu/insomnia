@@ -65,4 +65,21 @@ h1{
 
 .game-section{
     display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.story-text{
+    margin-top: 100px;
+    width: 50%;
+    margin-block-start: 0;
+    margin-block-end: 0;
+}
+h2{
+    color: white;
+}
+
+span{
+    color: rgba(56, 255, 224, 0.52);
 }
