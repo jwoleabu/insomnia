@@ -75,7 +75,7 @@ const chapters = [
     {
         chapter: "6",
         title: "His Eminence,The Sun",
-        text: `As you open your eyes the Dawn graces you with its warm embrace.<br><br>Its valiance warding away all evil, you remember the path home now.<br><br>It's been a long, hard night, but you overcame all odds.<br><br>Bursting with confidence, you march forward, you march to home.<br><br>Thanks for playing!`,
+        text: `<br><br>As you open your eyes the Dawn graces you with its warm embrace.<br><br>Its valiance warding away all evil, you remember the path home now.<br><br>It's been a long, hard night, but you overcame all odds.<br><br>Bursting with confidence, you march forward, you march to home.<br><br>Thanks for playing!`,
         choices: ['', '', ''],
         choiceFunctions: [],
         song: "sounds/dawn.mp3",
