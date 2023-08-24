@@ -7,8 +7,10 @@ const chapterTitle = document.querySelector('.chapter-title')
 const buttonContainer = document.querySelector('.button-container')
 const chapterImage = document.querySelector('.chapter-image')
 const chapterText = document.querySelector('.story-text')
+const musicText = document.querySelector('.current-music')
 const buttons = buttonContainer.querySelectorAll('button');
 let storyStarted = false;
+let audio = new Audio('');
 let typed = new Typed(".animText", {strings: ["Game.", "Story.",], typeSpeed: 150, backSpeed: 150, loop: false,
 })
 
@@ -16,10 +18,11 @@ const chapters = [
     {
         chapter: "0",
         title: "Lost",
-        text: `It's dark outside.<br>You ran away from home.<br>You're fatigued by the night.<br><br><b>You'll have to make it to daybreak and survive the wilderness.</b><br><span>Please.</span>`,
-        choices: ['proceed', '', ''],
+        text: `It's dark outside.<br>You ran away from home.<br>The wilds are not safe, not anymore.<br><br><b>You'll have to make it to daybreak and survive.</b><br><span>Please.</span>`,
+        choices: ['Proceed', '', ''],
         choiceFunctions: [proceed],
-        song: "sounds/introtheme.mp3"
+        song: "sounds/winds.mp3",
+        songDesc: "Wind"
     },
     {
         chapter: "1",
@@ -27,15 +30,17 @@ const chapters = [
         text: "Lorem LOREM Lorem LOREM Lorem LOREMLorem LOREM Lorem LOREMLorem LOREM Lorem LOREM Lorem LOREM",
         choices: ['Retry', '', ''],
         choiceFunctions: [retry],
-        song: "sounds/introtheme.mp3"
+        song: "sounds/death.mp3",
+        songDesc: "Nikita Kryukov: I'll be here for a while"
     },
     {
         chapter: "2",
         title: "The Moonlight Forest",
-        text: `The crescent moon shone like a silvery claw in the night sky, its radiance permeating the groves.<br><br>You find yourself in a beautiful forest right by a crystal lake.`,
-        choices: ['Drink the water', 'Rest by a tree', ''],
+        text: `The crescent moon shone like a silvery claw in the night sky, its radiance permeating the groves.<br><br>You find yourself in a beautiful forest right by a crystal lake.<br><br>Your reflection, as clear as day, you look the same.`,
+        choices: ['Drink the Water', 'Rest by a Tree', ''],
         choiceFunctions: [water, rest],
-        song: "sounds/introtheme.mp3"
+        song: "sounds/introtheme.mp3",
+        songDesc: "AZALI: the crystal voidlands"
     },
     {
         chapter: "3",
@@ -43,15 +48,17 @@ const chapters = [
         text: `You rest by a sturdy looking tree, it's bark forming a makeshift respite for your dreams.<br><br>You're woken by some chatter, trees with faces discussing topics about the forest.<br><br>You beckon to them asking them for a way out, Anansi the honest says to take the left path, Dharma the true urges you to take the right path. One is a <span>liar</span>.`,
         choices: ['Listen to Dharma', 'Listen to Anansi', 'Listen To Neither'],
         choiceFunctions: [dharma, anansi, neither],
-        song: "sounds/introtheme.mp3"
+        song: "sounds/trees.mp3",
+        songDesc: "Ery Noice: Wise Mystical Tree"
     },
     {
         chapter: "4",
         title: "Monstrous Nightmares",
-        text: `The night wanes, and ink blots sky as you follow the path Dharma showed you.<br> You hear a bloodcurdling scream from right behind you.<br><br>You turn around to find a pale skinned man sitting on the floor.`,
+        text: `The night wanes and ink blots sky as you follow Dharmas path.<br>Something unsettling is in the distance....<br><br>A creature<br><br>Its body spangled with insults to god, it wept and screamed, as if begging for forgiveness.<br><br> It noticed you, piercing you with its manic gaze, your <span class="red">heart</span> skips a beat.`,
         choices: ['Close your Ears', 'Close your Mouth', 'Close your Eyes'],
         choiceFunctions: [ears, mouth, eyes],
-        song: "sounds/introtheme.mp3"
+        song: "sounds/horrorbuildup.mp3",
+        songDesc: "Eerie"
     },
     {
         chapter: "5",
@@ -59,15 +66,17 @@ const chapters = [
         text: `You slam your eyes shut, Hoping and wishing that abomination never existed<br><br>Alas, within your own fragile world you are safe, as long as your eyes are closed and your heart denies death, It shall not be your truth.<br><br>You feel a flicker of light, will you accept this?`,
         choices: ['Breathe in the dawn', '', ''],
         choiceFunctions: [breathe],
-        song: "sounds/introtheme.mp3"
+        song: "sounds/awemusic.mp3",
+        songDesc: "Nikita Kryukov: Death Music?"
     },
     {
         chapter: "6",
         title: "His Eminence,The Sun",
-        text: `As you open your eyes the Dawn graces you with its warm embrace.<br><br>You survived the night.`,
+        text: `As you open your eyes the Dawn graces you with its warm embrace.<br><br>Its valiance warding away all evil, you remember the path home now.<br><br>It's been a long, hard night, but you overcame all odds.<br><br>Bursting with confidence, you march forward, you march to home.<br><br>Thanks for playing!`,
         choices: ['', '', ''],
         choiceFunctions: [],
-        song: "sounds/introtheme.mp3"
+        song: "sounds/dawn.mp3",
+        songDesc: "Toby Fox: But The Earth Refused To Die"
     },
 ];
 
@@ -85,7 +94,7 @@ function clickButton() {
     setTimeout(() => {
         title.style.opacity = '0';
         info.style.opacity = '0';
-    }, 2000);
+    }, 4000);
 
     setTimeout(() => {
         title.style.display = 'none';
@@ -93,17 +102,18 @@ function clickButton() {
         startChapter(0)
         gameSection.style.display = 'flex'
 
-    }, 3000);
+    }, 5500);
 
 }
 
 function startChapter(number){
     chapterTitle.innerText = chapters[number].title;
-    let chapterSound = new Audio(chapters[number].song);
-    console.log(`${chapterSound}`);
+    musicText.innerText = chapters[number].songDesc;
+    audio.src = chapters[number].song;
+    audio.play()
     typed = new Typed(".story-text", {
         strings: [chapters[number].text],
-        typeSpeed: 20,
+        typeSpeed: 35,
         backSpeed: 0,
         loop: false,
         showCursor: false,
@@ -127,6 +137,9 @@ function clearButton() {
     buttons.forEach((button) => {
         button.style.display = 'none';
     });
+    chapterText.innerHTML = '';
+    let choiceSound = new Audio("sounds/click.mp3")
+    choiceSound.play();
 }
 
 function proceed() {
@@ -135,6 +148,7 @@ function proceed() {
 }
 
 function die(){
+    musicText.classList.remove('yellow')
     body.classList.add('dead')
     clearButton()
     startChapter(1)
@@ -142,19 +156,19 @@ function die(){
 
 function water(){
     clearButton()
-    chapters[1].text = `You lap the water.<br> It fades to red as it's shards serrate your throat.`;
+    chapters[1].text = `You lap the water.<br>All fades to red as it's shards serrate your throat.<br><br>You were killed by the <span class="purple">Crystal Lake</span>`;
     die();
 }
 
 function anansi(){
     clearButton()
-    chapters[1].text = `The tree cackles in the distance as you mindlessly strut<br>ever deeper into the heart of the forest.`;
+    chapters[1].text = `The tree cackles in the distance as you mindlessly strut<br>ever deeper into the heart of the forest.<br><br>You were misled by the <span class="purple">Trickster</span>`;
     die();
 }
 
 function neither(){
     clearButton()
-    chapters[1].text = `The trees violently impale you with their roots, draining you of all your blood and nutrients, A worthy punishment for your ignorance.<br> You lay asunder, a dry corpse for ants to tread and soil to feed.`;
+    chapters[1].text = `The trees violently impale you with their roots, draining you of all your blood and nutrients, A worthy punishment for your ignorance.<br><br>You lay asunder, a dry corpse for ants to tread and soil to feed.<br><br>You were killed by the <span class="purple">Ancient Trees</span>`;
     die();
 }
 
@@ -172,13 +186,13 @@ function eyes(){
 
 function ears(){
     clearButton()
-    chapters[1].text = `The ears cackles in the distance as you mindlessly strut<br>ever deeper into the heart of the forest.`;
+    chapters[1].text = `You close your ears, now you no longer hear its solemn cries, yet the creature is still there.<br><br>You who would ignore the cries of a sinner, shall receive penance, The creature rips out your heart.<br><br>You were killed by the <span class="purple">Heretic</span>`;
     die();
 }
 
 function mouth(){
     clearButton()
-    chapters[1].text = `The mouth cackles in the distance as you mindlessly strut<br>ever deeper into the heart of the forest.`;
+    chapters[1].text = `You cover your mouth, making sure not to utter a single word. It urges you to join in its blasphemy, yet you ignore it.<br><br>In a fit of rage it hurls a rock straight into your skull, a fitting fate for a non-believer. <br><br>You were killed by the <span class="purple">Heretic</span>`;
     die();
 }
 
@@ -191,12 +205,14 @@ function rest() {
 
 function retry(){
     body.className = ''
+    musicText.classList.remove('yellow')
     clearButton()
-    startChapter(0)
+    startChapter(2)
 }
 
 function breathe(){
     body.classList.add('sun')
+    musicText.classList.add('yellow')
     clearButton()
     startChapter(6)
 }
