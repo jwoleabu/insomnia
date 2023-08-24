@@ -9,10 +9,13 @@ const chapterImage = document.querySelector('.chapter-image')
 const chapterText = document.querySelector('.story-text')
 const musicText = document.querySelector('.current-music')
 const buttons = buttonContainer.querySelectorAll('button');
+let textSpeed = 35;
 let storyStarted = false;
 let audio = new Audio('');
+let audioMuted = false;
 let typed = new Typed(".animText", {strings: ["Game.", "Story.",], typeSpeed: 150, backSpeed: 150, loop: false,
 })
+
 
 const chapters = [
     {
@@ -113,7 +116,7 @@ function startChapter(number){
     audio.play()
     typed = new Typed(".story-text", {
         strings: [chapters[number].text],
-        typeSpeed: 35,
+        typeSpeed: textSpeed,
         backSpeed: 0,
         loop: false,
         showCursor: false,
@@ -219,4 +222,31 @@ function breathe(){
 function sun(){
     clearButton()
     startChapter(5)
+}
+
+function fast() {
+    textSpeed = 10;
+    let choiceSound = new Audio("sounds/click.mp3")
+    choiceSound.play();
+}
+
+function slow() {
+    textSpeed = 35;
+    let choiceSound = new Audio("sounds/click.mp3")
+    choiceSound.play();
+}
+
+function volume(element) {
+    let choiceSound = new Audio("sounds/click.mp3")
+    choiceSound.play();
+    if (audioMuted){
+        audioMuted = false;
+        audio.volume = 1;
+        element.classList.toggle('muted')
+    }
+    else {
+        audioMuted = true;
+        audio.volume = 0;
+        element.classList.toggle('muted')
+    }
 }

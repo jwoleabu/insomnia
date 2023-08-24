@@ -97,6 +97,7 @@ h1{
 }
 
 .game-section{
+    user-select: none;
     display: none;
     flex-direction: column;
     justify-content: space-between;
@@ -167,4 +168,42 @@ color: rgb(255 243 137 / 80%)
 #current-track img{
     width: 20px;
     height: 20px;
+}
+
+.speed-container{
+    display: flex;
+    align-items: center;
+    position: fixed;
+    bottom: 10px;
+    right: 5px;
+    font-size: 12px;
+}
+
+.speed-container button{
+    margin-right: 10px;
+    padding: 9px 11px 12px;
+    background-size: 80%;
+    border-radius: 4px;
+}
+
+.speed-container button:hover{
+    background-size: 65%;
+}
+
+.fast-text{
+    background: url("images/fast.svg") no-repeat center, rgba(255, 255, 255, 0);
+}
+
+.slow-text{
+    background: url("images/slow.svg") no-repeat center, rgba(255, 255, 255, 0);
+}
+
+.volume-text{
+    background: url("images/volumeup.svg") no-repeat center, rgba(255, 255, 255, 0);
+    background-size: 80%;
+}
+
+.volume-text.muted{
+    background: url("images/volumeoff.svg") no-repeat center, rgba(255, 255, 255, 0);
+    background-size: 80%;
 }
