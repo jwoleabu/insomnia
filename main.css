@@ -12,9 +12,42 @@ html, body {
 
 body{
     text-align: center;
-    background: url("images/mountains.svg") no-repeat center, radial-gradient(ellipse at bottom, #020b0e, #132949) no-repeat;
+    background: url("images/nightmountain.svg") no-repeat center, radial-gradient(ellipse at bottom, #73dcff, #132949) no-repeat;
     background-size: cover;
     overflow: hidden;
+    transition: background-color 1s;
+}
+
+body.sun{
+    background: url("images/daymountain.svg") no-repeat center, radial-gradient(ellipse at bottom, #e4e4e4, #ffac70) no-repeat;
+    background-size: cover;
+}
+
+body.dark{
+    background: url("images/nightmountain.svg") no-repeat center, radial-gradient(ellipse at bottom, #000000, #132949) no-repeat;
+    background-size: cover;
+}
+
+body.dead{
+    background: url("images/death.svg") no-repeat center, radial-gradient(ellipse at bottom, #0d0033, #000000) no-repeat;
+    background-size: cover;
+    position: relative;
+}
+
+body.dead::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    top: 200px;
+    width: 50px;
+    height: 50px;
+    background-size: 100%;
+    background-image: url("images/skull.png");
+    background-repeat: no-repeat;
+    background-position: center;
 }
 
 h1, p{
@@ -31,7 +64,7 @@ h1{
     font-size: 5.5rem;
 }
 .animText{
-    color: rgba(56, 255, 224, 0.52);
+    color: rgba(56, 255, 224, 0.72);
 }
 .info{
     transition: opacity 1s;
@@ -72,6 +105,7 @@ h1{
 
 .story-text{
     margin-top: 100px;
+    min-height: 200px;
     width: 50%;
     margin-block-start: 0;
     margin-block-end: 0;
@@ -81,5 +115,28 @@ h2{
 }
 
 span{
-    color: rgba(56, 255, 224, 0.52);
+    color: rgba(56, 255, 224, 0.8);
+}
+
+.button-container{
+    display: flex;
+}
+
+.button-container button{
+    cursor: pointer;
+    margin: 10px;
+    display: none;
+    padding: 20px 40px 20px 40px;
+    border-radius: 10px;
+    color: white;
+    border: white solid 2px;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.2s;
+
+}
+.button-container button:hover{
+    color: #000000;
+    border: white solid 2px;
+    background-color: rgb(255, 255, 255);
+
 }
