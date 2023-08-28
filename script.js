@@ -66,7 +66,7 @@ const chapters = [
     {
         chapter: "5",
         title: "Beneath Broken Sky",
-        text: `You slam your eyes shut, Hoping and wishing that abomination never existed<br><br>Alas, within your own fragile world you are safe, as long as your eyes are closed and your heart denies death, It shall not be your truth.<br><br>You feel a flicker of light, will you accept this?`,
+        text: `You slam your eyes shut, hoping and wishing that abomination never existed<br><br>Alas, within your own fragile world you are safe, as long as your eyes are closed and your heart denies death, It shall not be your truth.<br><br>You feel a flicker of light, will you accept this?`,
         choices: ['Breathe in the dawn', '', ''],
         choiceFunctions: [breathe],
         song: "sounds/awemusic.mp3",
